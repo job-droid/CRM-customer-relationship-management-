@@ -1,9 +1,45 @@
 {% extends 'website/base.html' %}
 
 {% block content %}
-    <div class="col-md-6 offset-md-3">
       {% if user.is_authenticated %}
-        <h1>Hello world</h1>
+        <h1>Customers</h1>
+        <table class="table table-hover table-bordered border-secondary">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Address</th>
+              <th scope="col">City</th>
+              <th scope="col">State</th>
+              <th scope="col">Zipcode</th>
+              <th scope="col">Create At</th>
+              <th scope="col">ID</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% if customers  %}
+                {% for customer in customers %}
+                <tr>  
+                    <td><a href="{% url "record" customer.id %}">{{customer.first_name}}</td></a>
+                    <td>{{customer.last_name}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>{{customer.city}}</td>
+                    <td>{{customer.state}}</td>
+                    <td>{{customer.zipcode}}</td>
+                    <td>{{customer.created_at}}</td>
+                    <td>
+                      <a href="{% url "record" customer.id %}">
+                      {{customer.id}}</a>
+                    </td>
+                  </tr>  
+                {% endfor %}
+              {% endif %}
+          </tbody>
+        </table>
         {% else %}
         <h1>Login</h1>
         <br>
@@ -21,6 +57,5 @@
               </div>
               
         </form>
-    </div>
       {% endif %}
 {% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "website/base.html" %}
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <h1>Update Customer</h1>
+        <br>
+        <form action="" method="post">
+            {% csrf_token %}
+            <br>
+            {{form.as_p}}
+            <button type="submit" class="btn btn-success text-center">Update Customer</button>
+            <a href="{% url "home" %}" class="btn btn-secondary">Back</a>  
+        </form>
+         
+    </div>
+{% endblock content %}
